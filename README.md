@@ -1,6 +1,6 @@
 # PubSub
 ## About
-Aplikasi PubSub ini memudahkan orang untuk mencari pekerjaan. Subscribers akan berlangganan suatu topic, kemudian jika Publisher menambahkan suatu pekerjaan terkait topic tersebut, subscribers akan mendapatkan notifikasi dan list pekerjaan di page Subscribers. Aplikasi PubSub ini menggunakan server Node/WS/Express, WebSocket client API,, Push API, dan Notification API.
+Aplikasi PubSub ini memudahkan orang untuk mencari pekerjaan. Subscribers akan berlangganan suatu topic, kemudian jika Publisher menambahkan suatu pekerjaan terkait topic tersebut, subscribers akan mendapatkan notifikasi dan list pekerjaan di page Subscribers. Aplikasi PubSub ini menggunakan server Node/WS/Express, WebSocket client API, Push API, dan Notification API.
 
 ## Usage
 1. Cara menjalankan server
