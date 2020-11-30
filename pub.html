@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>        
+    <title>Publisher</title>
+
+    <!-- ===== CODING PUBSUB ===== -->
+    <script>
+        function publish() {
+            var message = document.getElementById('message').value;
+            var channel = document.getElementById('channel').value;
+
+            var host = window.document.location.host.replace(/:.*/, '');
+            var ws = new WebSocket('ws://' + host + ':8080');
+            ws.onopen = function () {
+                ws.send(JSON.stringify({
+                    request: 'PUBLISH',
+                    message: message,
+                    channel: channel
+                }));
+                ws.close();
+            };
+            sendNotif();
+
+        }
+
+        async function sendNotif() {
+            const SERVER_URL = 'http://localhost:8080/send-notification'
+            const response = await fetch(SERVER_URL, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            })
+            return response.json()
+
+        }
+    </script>
+</head>
+
+<body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">Job Finder</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+               
+                    <li class="nav__item"><a href="signup.html" class="nav__link">Sign Up</a></li>
+
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+    <main class="l-main">
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Publisher</h2>
+
+            <div class="contact__container bd-grid">
+               
+                <form action="" class="contact__form">
+                    <div class="form" >
+                    <h2> Job Field </h2>
+                    <input type="text" id="channel" placeholder="Business, IT, Culinary, or Art" class="contact__input" name="" id="" cols="0" rows="10">
+                    <h2> Job Description </h2>
+                    <input type="text" id="message" placeholder="Write the detail of the job vacancy"  name="" id="" cols="0" rows="10" class="contact__input">
+                    <button  type="submit" value="Submit" class="contact__button" onclick="publish()">Publish</button></div>  
+                </form>
+            </div>
+        </section>
+
+        </main>
+    
+</body>
+
+</html>

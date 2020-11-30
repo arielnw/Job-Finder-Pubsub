@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>   
+    <title>Subscribers</title>
+    <script src="sub.js"></script>
+</head>
+
+ <!-- ===== CODING PUBSUB ===== -->
+<body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">Job Finder</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+               
+                    <li class="nav__item"><a href="signup.html" class="nav__link">Sign Up</a></li>
+
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+    <main class="l-main">
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Subscriber</h2>
+
+            <div class="contact__container bd-grid">
+               
+                <form action="" class="contact__form">
+                    <div class="form" >
+                    <h2>Choose one job field </h2>
+                    <input type="text" id="channel" placeholder="Business, IT, Culinary, or Art" class="contact__input" name="" id="" cols="0" rows="10" size="50">
+                    <button  type="submit" value="Submit" class="contact__button" onclick="main()">Subscribe</button></div>  
+                </form>
+            </div>
+            <div>
+                <h2 class="section-title">Job List</h2>
+                <div id="message"></div>         
+            </div>
+        </section>
+    </main>
+    
+    
+</body>
+
+</html>

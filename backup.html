@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="assets/css/styles.css">
+        
+
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        
+        <!-- ===== CODING PUBSUB ===== -->
+    <title>Publisher</title>
+    <style>
+        body {
+            font-family: Tahoma, Geneva, Verdana, sans-serif
+        }
+
+        div {
+            display: inline;
+        }
+    </style>
+    <script>
+        function publish() {
+            var message = document.getElementById('message').value;
+            var channel = document.getElementById('channel').value;
+
+            var host = window.document.location.host.replace(/:.*/, '');
+            var ws = new WebSocket('ws://' + host + ':8080');
+            ws.onopen = function () {
+                ws.send(JSON.stringify({
+                    request: 'PUBLISH',
+                    message: message,
+                    channel: channel
+                }));
+                ws.close();
+            };
+            sendNotif();
+
+        }
+
+        async function sendNotif() {
+            const SERVER_URL = 'http://localhost:8080/send-notification'
+            const response = await fetch(SERVER_URL, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            })
+            return response.json()
+
+        }
+    </script>
+</head>
+
+<body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <!--<img src="frontend/images/logo/logoicon.png" alt="" class="nav__logo__img" >-->
+                <a href="#" class="nav__logo">Job Finder</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                <!-- <li class="nav__item"><a href="#skills" class="nav__link"></a></li>-->  
+                <!---  <li class="nav__item"><a href="#portfolio" class="nav__link">Top Post</a></li>-->
+                    <li class="nav__item"><a href="signup.html" class="nav__link">Sign Up</a></li>
+
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+    <main class="l-main">
+        <!--===== HOME =====-->
+        <section class="home" id="home">
+            <div class="home__container bd-grid">
+                <h1 class="home__title"><span>JOB</span><br>FINDER.</h1>
+
+                <div class="home__scroll">
+                    <a href="#about" class="home__scroll-link"><i class='bx bx-up-arrow-alt' ></i>Scroll down</a>
+                </div>
+                <img src="frontend/images/logo/logoicon.png" alt="" class="home__img">
+            </div>
+        </section>
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Publisher</h2>
+
+            <div class="contact__container bd-grid">
+                <!--<div class="contact__info">
+                    <h3 class="contact__subtitle">EMAIL</h3>
+                    <span class="contact__text">info.mail.com</span>
+
+                    <h3 class="contact__subtitle">PHONE</h3>
+                    <span class="contact__text">+20 999-999</span>
+s
+                    <h3 class="contact__subtitle">ADRESS</h3>
+                    <span class="contact__text">My contry</span>
+                </div>-->
+
+                <form action="" class="contact__form">
+                    <div class="form" >
+                    <h2  class="job-field">Job Field </h2>
+                    <input type="text" id="channel" placeholder="Business, IT, Culinary, or Art" class="contact__input" name="" id="" cols="0" rows="10">
+                    <h2 class="job-description">Job Description </h2>
+                    <input type="text" id="message" placeholder="Write the detail of the job vacancy"  name="" id="" cols="0" rows="10" class="contact__input">
+                    <button  type="submit" value="Submit" class="contact__button" onclick="publish()">Publish</button></div>
+                    
+                    
+                </form>
+            </div>
+        </section>
+    
+</body>
+
+</html>
