@@ -6,7 +6,6 @@ Aplikasi PubSub ini memudahkan orang untuk mencari pekerjaan. Subscribers akan b
 1. Cara menjalankan server
 ```
 npm install
-npm install -g web-push
 web-push generate-vapid-keys ( !!NOTE!! : generate vapid keys anda sendiri, kemudian ubah vapid keys di index.      js dan service.js)
 node index.js
 ```
