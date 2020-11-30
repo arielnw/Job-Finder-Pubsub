@@ -1,4 +1,4 @@
-//fungsi untuk mengecek apakah browser yang dipakai support service worker
+//fungsi untuk mengecek apakah browser yang dipakai support service worker dan push manager
 const check = () => {
   if (!('serviceWorker' in navigator)) {
     throw new Error('No Service Worker support!')
@@ -35,6 +35,7 @@ const main = async () => {
 }
 
 //fungsi untuk mengambil data channel pada halaman subscribe dan menampilkan data job list 
+var messageAja = []; //array untuk menampung message dari publisher
 function subscribe() {
   var message = document.getElementById('message');
   var channel = document.getElementById('channel').value;
@@ -47,8 +48,9 @@ function subscribe() {
           channel: channel
       }));
       ws.onmessage = function(event){
-          data = JSON.parse(event.data);
-          message.innerHTML = data.message;
+          data = JSON.parse(event.data); 
+          messageAja.push(data.message); //push ke array
+          message.innerHTML = messageAja; //display ke array
       };
   };  
 }
